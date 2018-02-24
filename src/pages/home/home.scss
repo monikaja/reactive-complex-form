@@ -1,0 +1,13 @@
+page-home {
+  ion-item.no-border{
+    min-height: 2.4rem;
+    > div{
+      border-bottom: 0 !important;
+    }
+  }
+  .text-not-overflow{
+    float: left;
+    word-wrap: break-word;
+    white-space: initial;
+  }
+}

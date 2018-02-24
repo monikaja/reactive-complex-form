@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Complex reactive form example
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form *ngIf="formData" [formGroup]="formData" (ngSubmit)="sendForm()" novalidate>
+    <ion-grid >
+      <ion-list>
+        <ion-item>
+          <ion-col col-12>
+            <span><strong>Personal Data</strong></span>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input name="name"  formControlName="name" ></ion-input>
+        </ion-item>
+        <ion-item class="no-border">
+          <show-errors [control]="formData.controls.name"></show-errors>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Surname</ion-label>
+          <ion-input name="surname1"  formControlName="surname1" ></ion-input>
+        </ion-item>
+        <ion-item class="no-border">
+          <show-errors [control]="formData.controls.surname1"></show-errors>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Surname 2</ion-label>
+          <ion-input name="surname2" formControlName="surname2"></ion-input>
+        </ion-item>
+        <ion-item class="no-border">
+          <show-errors [control]="formData.controls.surname2"></show-errors>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Identity document type</ion-label>
+          <ion-select name="ssnType" formControlName="ssnType">
+            <ion-option *ngFor="let docType of ssnType" value="{{docType.id}}">{{docType.description}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="no-border">
+          <show-errors [control]="formData.controls.ssnType"></show-errors>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Document number</ion-label>
+          <ion-input name="ssn" formControlName="ssn"></ion-input>
+        </ion-item>
+        <ion-item class="no-border">
+          <show-errors [control]="formData.controls.ssn"></show-errors>
+        </ion-item>
+        <ion-item class="no-border" *ngIf="passportWarning">
+          <div class="text-not-overflow">Passport document type is only for non resident person</div>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Phone</ion-label>
+          <ion-input name="phone" formControlName="phone" type="tel"></ion-input>
+        </ion-item>
+        <ion-item class="no-border">
+          <show-errors [control]="formData.controls.phone"></show-errors>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Birth date</ion-label>
+          <ion-datetime formControlName="birthDate" name="birthDate"  [displayFormat]="DD/MM/YYYY"></ion-datetime>
+        </ion-item>
+        <ion-item class="no-border">
+          <show-errors [control]="formData.controls.birthDate"></show-errors>
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+    <div padding>
+      <button id="acceptButton" ion-button color="primary" block type="submit" round>Send</button>
+    </div>
+  </form>
+</ion-content>
